@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/imgs"/>
+    <qresource prefix="/design">
+        <file>Design.txt</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>bgsound.wav</file>
+    </qresource>
+</RCC>
