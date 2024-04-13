@@ -1,4 +1,4 @@
-#ifndef HEALTHBAR_H
+/*#ifndef HEALTHBAR_H
 #define HEALTHBAR_H
 
 #include <QWidget>
@@ -19,3 +19,4 @@ private:
 };
 
 #endif // HEALTHBAR_H
+*/

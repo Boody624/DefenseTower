@@ -1,4 +1,4 @@
-#include "healthbar.h"
+/*#include "healthbar.h"
 
 HealthBar::HealthBar(QWidget *parent) : QWidget(parent), currentHealth(100) {}
 
@@ -18,4 +18,4 @@ void HealthBar::paintEvent(QPaintEvent *event) {
 
     // Draw health bar
     painter.fillRect(0, 0, barWidth, height(), Qt::green);
-}
+}*/

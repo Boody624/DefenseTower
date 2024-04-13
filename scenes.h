@@ -59,16 +59,16 @@ QGraphicsView* createSceneView(const QVector<QVector<int>>& clanDesign) {
 
             switch (value) {
             case 0: // Empty land
-                pixmapItem = new QGraphicsPixmapItem(QPixmap("D:/AUC/Spring 2024/CS 2/Project/Defense/mtland.png"));
+                pixmapItem = new QGraphicsPixmapItem(QPixmap(":/imgs/mtland.png"));
                 break;
             case 1: // Clan castle
-                pixmapItem = new QGraphicsPixmapItem(QPixmap("D:/AUC/Spring 2024/CS 2/Project/Defense/castle.png"));
+                pixmapItem = new QGraphicsPixmapItem(QPixmap(":/imgs/castle.png"));
                 break;
             case 2: // Defense unit
-                pixmapItem = new QGraphicsPixmapItem(QPixmap("D:/AUC/Spring 2024/CS 2/Project/Defense/wizardTower.png"));
+                pixmapItem = new QGraphicsPixmapItem(QPixmap(":/imgs/wizardTower.png"));
                 break;
             case 3: // Fence
-                pixmapItem = new QGraphicsPixmapItem(QPixmap("D:/AUC/Spring 2024/CS 2/Project/Defense/fence.png"));
+                pixmapItem = new QGraphicsPixmapItem(QPixmap(":/imgs/fence.png"));
                 // Create Fence object
                 //Fence *fence = new Fence(100, QPoint(j * 100, i * 100), "D:/AUC/Spring 2024/CS 2/Project/Defense/fence.png");
 

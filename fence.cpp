@@ -1,4 +1,4 @@
-#include "fence.h"
+/*#include "fence.h"
 
 Fence::Fence(int initialHealth, const QPoint& location, const QString& imagePath, QGraphicsItem* parent)
     : QGraphicsPixmapItem(QPixmap(imagePath), parent), health(initialHealth), location(location) {}
@@ -22,3 +22,4 @@ void Fence::setLocation(const QPoint& location) {
 void Fence::damage(int amount) {
     health -= amount;
 }
+*/

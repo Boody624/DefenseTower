@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Set background image
-    QPixmap backgroundImage("D:/AUC/Spring 2024/CS 2/Project/Defense/design.png");
+    QPixmap backgroundImage(":imgs/design.png");
     QPalette palette;
     palette.setBrush(this->backgroundRole(), backgroundImage);
     this->setPalette(palette);
