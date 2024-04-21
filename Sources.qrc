@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>castle.png</file>
+        <file>design.png</file>
+        <file>fence.png</file>
+        <file>mtland.png</file>
+        <file>wizardTower.png</file>
+        <file>red_laser.png</file>
+    </qresource>
+    <qresource prefix="/design">
+        <file>Design.txt</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>bgsound.wav</file>
+    </qresource>
+</RCC>
