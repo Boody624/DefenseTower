@@ -5,11 +5,18 @@
         <file>fence.png</file>
         <file>mtland.png</file>
         <file>wizardTower.png</file>
+        <file>red_laser.png</file>
+        <file>enemy.png</file>
+        <file>builder.png</file>
+        <file>builderHut.png</file>
     </qresource>
     <qresource prefix="/design">
         <file>Design.txt</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>bgsound.wav</file>
+    </qresource>
+    <qresource prefix="/stream">
+        <file>users.txt</file>
     </qresource>
 </RCC>

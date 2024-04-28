@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "scenes.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,8 +39,10 @@ void MainWindow::on_Start_clicked()
     MainWindow::bgsound->stop();
     // Create the scene
     QGraphicsView *view;
-    view = createSceneView(clanDesign);
+    Scenes* scenes = new Scenes();
+    view = scenes->renderScene();
     view->showFullScreen();
+
 }
 
 void MainWindow::on_Options_clicked()
