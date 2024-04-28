@@ -432,7 +432,7 @@
 											"top": 615,
 											"width": 89.4990234375,
 											"height": 13,
-											"text": "Troops"
+											"text": "Enemies"
 										},
 										{
 											"_type": "LabelView",
@@ -910,7 +910,7 @@
 											"top": 359,
 											"width": 120.564453125,
 											"height": 13,
-											"text": "Defensive unit"
+											"text": "DefensiveUnit"
 										},
 										{
 											"_type": "LabelView",
@@ -3075,6 +3075,208 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAGOzmzFoNyS9HA="
 							}
+						},
+						{
+							"_type": "UMLClassView",
+							"_id": "AAAAAAGPA4PSyM9oHME=",
+							"_parent": {
+								"$ref": "AAAAAAGOzi1BqM2xe9Q="
+							},
+							"model": {
+								"$ref": "AAAAAAGPA4PSx89mzXk="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAGPA4PSyM9pOKg=",
+									"_parent": {
+										"$ref": "AAAAAAGPA4PSyM9oHME="
+									},
+									"model": {
+										"$ref": "AAAAAAGPA4PSx89mzXk="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGPA4PSyM9qRe0=",
+											"_parent": {
+												"$ref": "AAAAAAGPA4PSyM9pOKg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGPA4PSyM9rUrM=",
+											"_parent": {
+												"$ref": "AAAAAAGPA4PSyM9pOKg="
+											},
+											"font": "Arial;13;1",
+											"left": 845,
+											"top": 215,
+											"width": 109.01806640625,
+											"height": 13,
+											"text": "EnemySpawner"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGPA4PSyM9spbo=",
+											"_parent": {
+												"$ref": "AAAAAAGPA4PSyM9pOKg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 80.9072265625,
+											"height": 13,
+											"text": "(from Model1)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGPA4PSyM9tdeM=",
+											"_parent": {
+												"$ref": "AAAAAAGPA4PSyM9pOKg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 840,
+									"top": 208,
+									"width": 119.01806640625,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGPA4PSyM9qRe0="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAGPA4PSyM9rUrM="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAGPA4PSyM9spbo="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGPA4PSyM9tdeM="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAGPA4PSyM9uFL8=",
+									"_parent": {
+										"$ref": "AAAAAAGPA4PSyM9oHME="
+									},
+									"model": {
+										"$ref": "AAAAAAGPA4PSx89mzXk="
+									},
+									"font": "Arial;13;0",
+									"left": 840,
+									"top": 233,
+									"width": 119.01806640625,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAGPA4PSyM9v59E=",
+									"_parent": {
+										"$ref": "AAAAAAGPA4PSyM9oHME="
+									},
+									"model": {
+										"$ref": "AAAAAAGPA4PSx89mzXk="
+									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGPA4Sz19E1BlU=",
+											"_parent": {
+												"$ref": "AAAAAAGPA4PSyM9v59E="
+											},
+											"model": {
+												"$ref": "AAAAAAGPA4SzztEszyA="
+											},
+											"font": "Arial;13;0",
+											"left": 845,
+											"top": 248,
+											"width": 109.01806640625,
+											"height": 13,
+											"text": "+spawnenemy()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGPA4UNltJT8xk=",
+											"_parent": {
+												"$ref": "AAAAAAGPA4PSyM9v59E="
+											},
+											"model": {
+												"$ref": "AAAAAAGPA4UNjdJK0nw="
+											},
+											"font": "Arial;13;0",
+											"left": 845,
+											"top": 263,
+											"width": 109.01806640625,
+											"height": 13,
+											"text": "+EnemySpawner()",
+											"horizontalAlignment": 0
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 840,
+									"top": 243,
+									"width": 119.01806640625,
+									"height": 38
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAGPA4PSyM9wfQ0=",
+									"_parent": {
+										"$ref": "AAAAAAGPA4PSyM9oHME="
+									},
+									"model": {
+										"$ref": "AAAAAAGPA4PSx89mzXk="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 92.01806640625,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAGPA4PSyM9xF5M=",
+									"_parent": {
+										"$ref": "AAAAAAGPA4PSyM9oHME="
+									},
+									"model": {
+										"$ref": "AAAAAAGPA4PSx89mzXk="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 840,
+							"top": 208,
+							"width": 118.01806640625,
+							"height": 73,
+							"nameCompartment": {
+								"$ref": "AAAAAAGPA4PSyM9pOKg="
+							},
+							"attributeCompartment": {
+								"$ref": "AAAAAAGPA4PSyM9uFL8="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAGPA4PSyM9v59E="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAGPA4PSyM9wfQ0="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAGPA4PSyM9xF5M="
+							}
 						}
 					]
 				},
@@ -3192,7 +3394,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGOzi1BqM2wE4I="
 					},
-					"name": "Troops",
+					"name": "Enemies",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -3333,7 +3535,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGOzi1BqM2wE4I="
 					},
-					"name": "Defensive unit",
+					"name": "DefensiveUnit",
 					"ownedElements": [
 						{
 							"_type": "UMLActor",
@@ -3993,6 +4195,32 @@
 								"$ref": "AAAAAAGOzmw/B8/3L0Q="
 							},
 							"name": "Bullet"
+						}
+					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAGPA4PSx89mzXk=",
+					"_parent": {
+						"$ref": "AAAAAAGOzi1BqM2wE4I="
+					},
+					"name": "EnemySpawner",
+					"operations": [
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGPA4SzztEszyA=",
+							"_parent": {
+								"$ref": "AAAAAAGPA4PSx89mzXk="
+							},
+							"name": "spawnenemy"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGPA4UNjdJK0nw=",
+							"_parent": {
+								"$ref": "AAAAAAGPA4PSx89mzXk="
+							},
+							"name": "EnemySpawner"
 						}
 					]
 				}

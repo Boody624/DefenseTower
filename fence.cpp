@@ -1,7 +1,10 @@
-/*#include "fence.h"
+#include "fence.h"
 
-Fence::Fence(int initialHealth, const QPoint& location, const QString& imagePath, QGraphicsItem* parent)
-    : QGraphicsPixmapItem(QPixmap(imagePath), parent), health(initialHealth), location(location) {}
+Fence::Fence(QGraphicsItem* parent, int health) : QObject(), QGraphicsPixmapItem(parent), health(health), maxhealth(health) {
+    QString path = ":/imgs/fence.png";
+    QPixmap img3(path);
+    setPixmap(img3.scaled(50, 50));
+}
 
 int Fence::getHealth() const {
     return health;
@@ -11,8 +14,37 @@ QPoint Fence::getLocation() const {
     return location;
 }
 
+bool Fence::isDamaged() {
+    return (health < maxhealth);
+}
+
+bool Fence::atFullHealth() {
+    return (health == maxhealth);
+}
+
 void Fence::setHealth(int health) {
     this->health = health;
+}
+
+bool Fence::isDestroyed() {
+    if (health <= 0) {
+        hide();
+        deleteLater();
+        return true;
+    }
+    return false;
+}
+
+bool Fence::decHealth(int health) {
+    this->health -= health;
+    return isDestroyed();
+}
+
+void Fence::incHealth(int health) {
+    this->health += health;
+    if (this->health >= maxhealth) {
+        this->health = maxhealth;
+    }
 }
 
 void Fence::setLocation(const QPoint& location) {
@@ -22,4 +54,11 @@ void Fence::setLocation(const QPoint& location) {
 void Fence::damage(int amount) {
     health -= amount;
 }
-*/
+
+void Fence::displayHealthBar() {
+    // Implement health bar display logic here
+}
+
+void Fence::takeDmg(int damage) {
+    health -= damage;
+}

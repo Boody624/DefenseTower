@@ -9,19 +9,38 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    builder.cpp \
+    builder_hut.cpp \
+    bullet.cpp \
+    defence_unit.cpp \
+    enemy.cpp \
+    enemyspawner.cpp \
+    entry.cpp \
     fence.cpp \
     healthbar.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    myscene.cpp \
+    scenes.cpp
 
 HEADERS += \
     Options.h \
+    builder.h \
+    builder_hut.h \
+    bullet.h \
+    castle.h \
+    defence_unit.h \
+    enemy.h \
+    enemyspawner.h \
+    entry.h \
     fence.h \
     healthbar.h \
     mainwindow.h \
+    myscene.h \
     scenes.h
 
 FORMS += \
+    entry.ui \
     mainwindow.ui
 
 # Default rules for deployment.
