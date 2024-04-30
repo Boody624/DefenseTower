@@ -8,10 +8,7 @@ Defence_unit::Defence_unit(QGraphicsScene* thescene) {
     // setting the image
     QString path = ":/imgs/wizardTower.png";
     QPixmap img3 = (path);
-    setPixmap(img3.scaled(100, 100));
-    setPos(500, 400);
-    QObject::connect(&timer,&QTimer::timeout,this,&Defence_unit::spawnBullet);
-    timer.start(50);
+    setPixmap(img3.scaled(50, 50));
 }
 Defence_unit::~Defence_unit()
 {
@@ -20,9 +17,9 @@ Defence_unit::~Defence_unit()
 }
 void Defence_unit::spawnBullet()
 {
-    float xpos = this->x();
-    float ypos = this->y();
-
+    xpos = this->x();
+    ypos = this->y();
+    qDebug() << "this is the x and y pos " << this->x() << " " << this->y();
     bull = new bullet();
     bull->setPos(xpos, ypos);
     scene()->addItem(bull);

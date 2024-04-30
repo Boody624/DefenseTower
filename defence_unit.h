@@ -12,6 +12,9 @@ class Defence_unit : public QObject, public QGraphicsPixmapItem
     QTimer bullettimer;
     bullet * bull;
 public:
+    float xpos;
+    float ypos;
+public:
     Defence_unit(QGraphicsScene* thescene);
     ~Defence_unit();
 public slots:
