@@ -7,8 +7,9 @@
 #include <QTimer>
 #include <QObject>
 #include <QGraphicsItem>
+#include <QPointF>
 #include <QGraphicsScene>
-
+#include <qmath.h>
 
 class bullet : public QObject, public QGraphicsPixmapItem
 {
@@ -16,21 +17,23 @@ class bullet : public QObject, public QGraphicsPixmapItem
 private:
 
 public:
-    bullet();
+    bullet(QPointF origin);
     static int counter;
     float xposition;
     float yposition;
     float initialx;
     float initialy;
-    float speed = 50;
+    float speed = 20;
     float damage = 10;
     QPoint getMousePosition();
     QLine line;
     float distance;
     QTimer timer;
     void setDestination(QPointF destination);
+    float slope;
 public slots:
     void move();
+    void incDamage();
 };
 
 #endif // BULLET_H

@@ -7,10 +7,9 @@ EnemySpawner::EnemySpawner(QGraphicsScene* thescene, QVector<QVector<QChar>> Boa
     QString path = ":/imgs/mtland.png";
     QPixmap img3 = (path);
     setPixmap(img3.scaled(50, 50));
-    setPos(200, 300);
     Boarddata2 = Boarddata;
     QObject::connect(&timer, &QTimer::timeout, this, &EnemySpawner::spawnEnemy);
-    timer.start(2000); // Adjust the interval as needed for enemy spawn rate
+    //timer.start(2000); // Adjust the interval as needed for enemy spawn rate
 }
 
 EnemySpawner::~EnemySpawner() {

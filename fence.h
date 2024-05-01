@@ -27,24 +27,25 @@ public:
     bool isDamaged();
     bool atFullHealth();
     int health;
-    int maxhealth;
+    int maxhealth = 100;
     QPoint location;
     void setHealth(int health);
-    bool isDestroyed();
     bool decHealth(int health);
     void incHealth(int health);
     void setLocation(const QPoint& location);
-
     // Other methods
     void damage(int amount);
     void displayHealthBar();
 
 public slots:
     void takeDmg(int damage);
+    void checkIfDestroyed();
+    bool isDestroyed();
+
 
 signals:
     // Signal emitted when the health changes
-    void healthChanged(int newHealth);
+    void gotDestroyed();
 };
 
 #endif // FENCE_H
