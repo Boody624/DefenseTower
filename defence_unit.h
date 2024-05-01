@@ -4,6 +4,7 @@
 #include "bullet.h"
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QPointF>
 class Defence_unit : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -14,6 +15,8 @@ class Defence_unit : public QObject, public QGraphicsPixmapItem
 public:
     Defence_unit(QGraphicsScene* thescene);
     ~Defence_unit();
+    QPointF position;
+
 public slots:
     void spawnBullet();
 };

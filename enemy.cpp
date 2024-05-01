@@ -1,7 +1,6 @@
 #include "enemy.h"
-#include <QDebug>
-#include <QGraphicsScene>
-#include <fence.h>
+#include "fence.h"
+#include "castle.h"
 #include <QMessageBox>
 
 // Make target point static
@@ -13,19 +12,19 @@ Enemy::Enemy() : QObject(), QGraphicsPixmapItem() {
     QPixmap img = QPixmap(path);
     setPixmap(img.scaled(50, 50));
     setPos(0, 0); // Initial position at the top left corner
-    damage = 50; // Set the damage value
+    damage = 20; // Set the damage value
+    health = 50;
     // Creating the movement timer
     moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(50); // Adjust the interval as needed
-    checkCollisionTimer = new QTimer(this);
-    connect(checkCollisionTimer, SIGNAL(timeout()), this, SLOT(checkCollision()));
-    checkCollisionTimer->start(50);
-    // damageTimer = nullptr; // Initialize damageTimer to nullptr
+
 }
 
 void Enemy::move() {
+    checkCollision();
     // Calculate the direction towards the target point
+    if(!hasCollided){
     qreal dx = targetPoint.x() - x();
     qreal dy = targetPoint.y() - y();
 
@@ -39,52 +38,85 @@ void Enemy::move() {
     // Move the enemy towards the target point
     setPos(x() + dx * 2, y() + dy * 2); // Adjust the speed as needed
 
-    // If the enemy reaches the target point, stop moving
-    if (pos().toPoint() == targetPoint) {
-        moveTimer->stop();
-        // Delay the game over message using a QTimer
-        QTimer::singleShot(1000, this, [=]() {
-            QMessageBox gameOverBox;
-            gameOverBox.setWindowTitle("Game Over");
-            gameOverBox.setText("The enemy has reached the target!");
-            gameOverBox.setStandardButtons(QMessageBox::Ok);
-            gameOverBox.setDefaultButton(QMessageBox::Ok);
-            gameOverBox.exec();
-            exit(2000);
-
-        });
     }
 }
+
+void Enemy::doDamage(Fence* fence)
+{
+    fence->decHealth(this->damage);
+}
+
+void Enemy::onFenceDestroyed()
+{
+    if (!moveTimer->isActive()) {
+        moveTimer->start(50); // Resume movement
+    }
+}
+
 void Enemy::checkCollision()
 {
-    QList<QGraphicsItem*> colliding_items = collidingItems();
-    for (int i = 0, n = colliding_items.size(); i < n; ++i) {
-        if (typeid(*(colliding_items[i])) == typeid(Fence)) {
-            Fence* fence = dynamic_cast<Fence*>(colliding_items[i]);
-            targetedFence = fence;
-            if(!targetedFence->isDestroyed()){
-                qDebug() << "Collision detected";
-                this->moveTimer->stop();
-                fence->decHealth(this->damage);
-                checkCollisionTimer->stop();
-                if(targetedFence->getHealth()<=0){
-                    qDebug() << "Fence is destroyed in the collision";
-                    checkCollisionTimer->start(50);
-                    moveTimer->start(50); // Resume the movement timer
-                    return;
-                }
+    moveTimer->stop(); // Stop the movement timer
+    QList<QGraphicsItem*> collidingItemsList = collidingItems();
+    // Iterate through the list to find the first fence
+    for (QGraphicsItem* item : collidingItemsList)
+    {
+        // Check if the colliding item is a Fence
+        Fence* fence = dynamic_cast<Fence*>(item);
+        if (fence)
+        {
+            // Connect the signal from the Fence to the slot in the Enemy
+            connect(fence, &Fence::gotDestroyed, this, &Enemy::onFenceDestroyed);
+
+            if (fence->isDestroyed())
+            {
+
+            }
+            else
+            {
+                // Inflict damage after a delay
                 QTimer::singleShot(2000, this, [=]() {
-                    // Resume the original timer
-                    checkCollisionTimer->start(50);
-                    moveTimer->start(50); // Resume the movement timer
+                    doDamage(fence);
+                    moveTimer->start(50); // Resume the movement timer after damage is inflicted
+                    hasCollided = true;
                 });
             }
-            else{
-                qDebug() << "Fence is destroyed";
-                moveTimer->start(50); // Resume the movement timer
-                return;
-            }
+            // Exit the loop after processing the first fence
+            return;
         }
+        Castle* castle = dynamic_cast<Castle*>(item);
+        if (castle)
+        {
+            moveTimer->stop(); // Stop the movement timer
+            // Inflict damage to the castle
+            QTimer::singleShot(2000, this, [=]() {
+                castle->decHealth(damage);
+                qDebug() << "Castle health: " << castle->getHealth();
+                moveTimer->start(50); // Resume the movement timer after damage is inflicted
+                hasCollided = true;
+                // Check if the castle is destroyed
+                if (castle->isDestroyed())
+                {
+                    QMessageBox gameOverBox;
+                    gameOverBox.setWindowTitle("Game Over");
+                    gameOverBox.setText("The enemies have invaded your castle");
+                    gameOverBox.setStandardButtons(QMessageBox::Ok);
+                    gameOverBox.setDefaultButton(QMessageBox::Ok);
+                    gameOverBox.exec();
+                    exit(1000); // Exit the game
+                }
+                else
+                {
+                }
+            });
+            return;
+        }
+    }
+
+    // If no collision with a fence is detected, resume movement if it was stopped
+    if (!moveTimer->isActive())
+    {
+        hasCollided = false;
+        moveTimer->start(50);
     }
 }
 

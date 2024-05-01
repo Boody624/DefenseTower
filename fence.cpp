@@ -4,6 +4,7 @@ Fence::Fence(QGraphicsItem* parent, int health) : QObject(), QGraphicsPixmapItem
     QString path = ":/imgs/fence.png";
     QPixmap img3(path);
     setPixmap(img3.scaled(50, 50));
+
 }
 
 int Fence::getHealth() const {
@@ -25,14 +26,21 @@ bool Fence::atFullHealth() {
 void Fence::setHealth(int health) {
     this->health = health;
 }
-
-bool Fence::isDestroyed() {
+void Fence::checkIfDestroyed() {
     if (health <= 0) {
         hide();
-        deleteLater();
+        delete this;
+    }
+}
+bool Fence::isDestroyed() {
+    if (this->health <= 0) {
+        this->hide();
+        emit gotDestroyed();
         return true;
     }
-    return false;
+    else {
+        return false;
+    }
 }
 
 bool Fence::decHealth(int health) {

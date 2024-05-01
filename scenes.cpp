@@ -1,5 +1,7 @@
 #include "scenes.h"
 #include "builder_hut.h"
+#include "countdown.h"
+
 Scenes::Scenes() {
     view = new QGraphicsView();
     scene = new myscene();
@@ -11,7 +13,6 @@ Scenes::Scenes() {
 
     QString textFilePath = ":/design/Design.txt";
     readDesignFromFile(textFilePath);
-    view = renderScene();
 
 }
 
@@ -61,6 +62,7 @@ QGraphicsView* Scenes::renderScene() {
             } else if (Boarddata[i][j] == '2') {
                 defense_unit = new Defence_unit(scene);
                 defense_unit->setPos(backgroundItem->x(), backgroundItem->y());
+                defense_unit->position = QPointF(backgroundItem->x(), backgroundItem->y());
                 scene->addItem(defense_unit);
                 QObject::connect(scene, &myscene::mousePresseddd, defense_unit, &Defence_unit::spawnBullet);
                 enemySpawner = new EnemySpawner(scene, Boarddata);
@@ -70,18 +72,22 @@ QGraphicsView* Scenes::renderScene() {
                 fence = new Fence();
                 fence->setPos(backgroundItem->x(), backgroundItem->y());
                 scene->addItem(fence);
+                this->fences.push_back(fence);
             }
 
             else if (Boarddata[i][j] == '4'){
                 //create a builder hut
-                builder_hut *builderHut = new builder_hut(scene);
+                builder_hut *builderHut = new builder_hut(scene, fences);
                 builderHut->setPos(backgroundItem->x(), backgroundItem->y());
+                builderHut->origin = QPointF(backgroundItem->x(), backgroundItem->y());
                 scene->addItem(builderHut);
+                QTimer::singleShot(2500, builderHut, &builder_hut::spawnBuilder);
             }
         }
     }
 
-
+    CountdownTimer *countdown = new CountdownTimer();
+    scene->addItem(countdown);
     return view;
 }
 

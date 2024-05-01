@@ -12,6 +12,7 @@ SOURCES += \
     builder.cpp \
     builder_hut.cpp \
     bullet.cpp \
+    castle.cpp \
     defence_unit.cpp \
     enemy.cpp \
     enemyspawner.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     builder_hut.h \
     bullet.h \
     castle.h \
+    countdown.h \
     defence_unit.h \
     enemy.h \
     enemyspawner.h \

@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
 #include <QMouseEvent>
+#include <QSet>
 #include "castle.h"
 #include "defence_unit.h"
 #include "fence.h"
@@ -21,14 +22,16 @@ public:
     QGraphicsView* getView();
     QGraphicsView* view;
     myscene* scene;
+    Fence* fence;
     QVector<QVector<QChar>> Boarddata;
     Castle* castle;
+    QVector<Fence*> fences;
     Defence_unit* defense_unit;
     EnemySpawner* enemySpawner;
-    Fence* fence;
     void readDesignFromFile(const QString& filePath);
     QGraphicsView* renderScene();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    QSet<QPoint> fencePositions;
 };
 
 #endif // SCENES_H
