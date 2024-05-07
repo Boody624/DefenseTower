@@ -8,13 +8,14 @@ class Castle : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Castle();
+    Castle(QString castlePath, int castleHealth);
 
     int getHealth() const;
     void setHealth(int health);
     bool isDestroyed();
     bool decHealth(int damage);
     bool incHealth(int health);
+    QString castlePath;
 
 signals:
     void gotHit();

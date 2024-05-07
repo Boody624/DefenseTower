@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "scenes.h"
+#include "game.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -38,10 +38,8 @@ void MainWindow::on_Start_clicked()
     this->hide();
     MainWindow::bgsound->stop();
     // Create the scene
-    QGraphicsView *view;
-    Scenes* scenes = new Scenes();
-    view = scenes->renderScene();
-    view->showFullScreen();
+    game* thegame = new game();
+    thegame->displayFinal();
 
 }
 

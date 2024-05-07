@@ -1,5 +1,5 @@
-#ifndef BULLET_H
-#define BULLET_H
+#ifndef BOSSMAGIC_H
+#define BOSSMAGIC_H
 #include <QCursor>
 #include <QPoint>
 #include <QtMath>
@@ -11,32 +11,26 @@
 #include <QGraphicsScene>
 #include <qmath.h>
 
-class bullet : public QObject, public QGraphicsPixmapItem
+class bossMagic: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
-private:
 
 public:
-    bullet(QPointF origin, QString bulletPath, int bulletDamage);
-    static int counter;
+    bossMagic(QPointF position);
+    static int damage;
     float xposition;
     float yposition;
     float initialx;
     float initialy;
-    float speed = 20;
-    static int damage;
-    static int damageCounter;
-    QPoint getMousePosition();
     QLine line;
     float distance;
-    QTimer timer;
+    QTimer *timer;
+    float speed = 30;
     void setDestination(QPointF destination);
     float slope;
-    static bool boosted;
+    static QPointF target;
 public slots:
     void move();
-    void incDamage();
-    static void boostDamage();
 };
 
-#endif // BULLET_H
+#endif // BOSSMAGIC_H

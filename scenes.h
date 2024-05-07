@@ -11,6 +11,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMouseEvent>
 #include <QSet>
+#include <QTime>
 #include "castle.h"
 #include "defence_unit.h"
 #include "fence.h"
@@ -18,7 +19,11 @@
 #include "myscene.h"
 class Scenes  {
 public:
-    Scenes();
+    Scenes(QString designFilePath, QString castlePath, int castleHealth,
+           QString defenseTowerPath, QString bulletPath, int bulletDamage,
+           QString enemyPath, int enemyHealth, int enemyDamage, QString bgPath,
+           QString fencePath, int fenceHealth, QString builderHutPath,
+           QString builderPath, int builderHeal, QTime initialTime);
     QGraphicsView* getView();
     QGraphicsView* view;
     myscene* scene;
@@ -32,6 +37,25 @@ public:
     QGraphicsView* renderScene();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     QSet<QPoint> fencePositions;
+    QString castlePath;
+    int castleHealth;
+    QString defenseTowerPath;
+    QString bulletPath;
+    int bulletDamage;
+    QString enemyPath;
+    int enemyHealth;
+    int enemyDamage;
+    QString bgPath;
+    QString fencePath;
+    int fenceHealth;
+    QString builderHutPath;
+    QString builderPath;
+    int builderHeal;
+    QTime initialTime;
+    void deleteAllObjects();
+    QPointF castlePosition;
+
+
 };
 
 #endif // SCENES_H

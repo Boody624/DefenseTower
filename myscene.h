@@ -17,9 +17,19 @@ public:
     myscene(QObject *parent = nullptr);
     void startTimer();
     QGraphicsTextItem *timerDisplay;
+    void DisplayLVL2();
+    void DisplayLVL3();
+    void DisplayLVL4();
+    void DisplayLVL5();
+    void DisplayFinal();
 
 
 signals:
+    void displayLVL2();
+    void displayLVL3();
+    void displayLVL4();
+    void displayLVL5();
+    void displayFinal();
     void mousePresseddd(const QPointF& pos);
 
 protected:

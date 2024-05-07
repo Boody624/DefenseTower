@@ -13,9 +13,12 @@ class Defence_unit : public QObject, public QGraphicsPixmapItem
     QTimer bullettimer;
     bullet * bull;
 public:
-    Defence_unit(QGraphicsScene* thescene);
+    Defence_unit(QGraphicsScene* thescene, QString defenceTowerPath, QString bulletPath, int bulletDamage);
     ~Defence_unit();
     QPointF position;
+    QString defenceTowerPath;
+    QString bulletPath;
+    int bulletDamage;
 
 public slots:
     void spawnBullet();

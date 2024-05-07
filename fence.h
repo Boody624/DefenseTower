@@ -20,13 +20,14 @@ private:
 
 public:
     // Constructor
-    Fence(QGraphicsItem* parent = nullptr, int health = 100);
+    Fence(QGraphicsItem* parent, QString fencePath, int health);
 
     int getHealth() const;
     QPoint getLocation() const;
     bool isDamaged();
     bool atFullHealth();
     int health;
+    QString fencePath;
     int maxhealth = 100;
     QPoint location;
     void setHealth(int health);
@@ -36,6 +37,7 @@ public:
     // Other methods
     void damage(int amount);
     void displayHealthBar();
+
 
 public slots:
     void takeDmg(int damage);

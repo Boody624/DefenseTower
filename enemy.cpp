@@ -2,25 +2,44 @@
 #include "fence.h"
 #include "castle.h"
 #include <QMessageBox>
-
+#include <QMovie>
 // Make target point static
 QPoint Enemy::targetPoint;
 
-Enemy::Enemy() : QObject(), QGraphicsPixmapItem() {
+Enemy::Enemy(QString enemyPath, int health, int damage) : QObject(), QGraphicsPixmapItem() {
     // Setting the image of the enemy
-    QString path = ":/imgs/enemy.png";
+    QString path = enemyPath;
     QPixmap img = QPixmap(path);
     setPixmap(img.scaled(50, 50));
+    setZValue(2);
     setPos(0, 0); // Initial position at the top left corner
-    damage = 20; // Set the damage value
-    health = 50;
+    this->damage = damage; // Set the damage value
+    this->health = health;
     // Creating the movement timer
     moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
     moveTimer->start(50); // Adjust the interval as needed
+    // Load the GIF animation
+    enemyAnimation = new QMovie(enemyPath);
+
+    // Connect the frameChanged signal to update the pixmap
+    connect(enemyAnimation, SIGNAL(frameChanged(int)), this, SLOT(updatePixmap()));
+
+    // Start the animation
+    enemyAnimation->start();
 
 }
-
+void Enemy::updatePixmap() {
+    QPixmap framePixmap = enemyAnimation->currentPixmap();
+    qreal dx = Enemy::targetPoint.x() - x();
+    qreal dy = Enemy::targetPoint.y() - y();
+    qreal angle = qRadiansToDegrees(qAtan2(dy, dx));
+    // Scale the pixmap to 50x50 pixels
+    QPixmap scaledPixmap = framePixmap.scaled(65, 65);
+    QPixmap rotatedPixmap = scaledPixmap.transformed(QTransform().rotate(angle));
+    // Set the scaled pixmap as the pixmap for the QGraphicsPixmapItem
+    setPixmap(rotatedPixmap);
+}
 void Enemy::move() {
     checkCollision();
     // Calculate the direction towards the target point

@@ -9,9 +9,20 @@
         <file>enemy.png</file>
         <file>builder.png</file>
         <file>builderHut.png</file>
+        <file>damageBooster.png</file>
+        <file>final_boss.png</file>
+        <file>bossMagic.png</file>
+        <file>enemy.gif</file>
+        <file>giphy.gif</file>
+        <file>gomel_walk011.gif</file>
     </qresource>
     <qresource prefix="/design">
-        <file>Design.txt</file>
+        <file>LVL2.txt</file>
+        <file>LVL3.txt</file>
+        <file>LVL4.txt</file>
+        <file>LVL5.txt</file>
+        <file>LVLFinal.txt</file>
+        <file>LVL1.txt</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>bgsound.wav</file>

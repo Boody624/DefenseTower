@@ -42,3 +42,23 @@ void myscene::updateTimerDisplay() {
     timerDisplay->setPlainText(displayText);
     timerDisplay->setPos(100, 100); // Set position of the timer display
 }
+void myscene::DisplayLVL2()
+{
+    emit displayLVL2();
+}
+void myscene::DisplayLVL3()
+{
+    emit displayLVL3();
+}
+void myscene::DisplayLVL4()
+{
+    emit displayLVL4();
+}
+void myscene::DisplayLVL5()
+{
+    emit displayLVL5();
+}
+void myscene::DisplayFinal()
+{
+    emit displayFinal();
+}

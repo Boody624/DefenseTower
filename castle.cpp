@@ -1,9 +1,10 @@
 #include "castle.h"
 #include <QPixmap>
 
-Castle::Castle() : health(100), maxHealth(100)
+Castle::Castle(QString castlePath, int castleHealth) : health(castleHealth), maxHealth(castleHealth)
 {
-    QPixmap img(":/imgs/castle.png");
+    this->castlePath = castlePath;
+    QPixmap img(castlePath);
     setPixmap(img.scaled(50, 50));
 }
 

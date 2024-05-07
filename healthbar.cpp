@@ -1,21 +1,25 @@
-/*#include "healthbar.h"
+// HealthBar.cpp
+#include "healthbar.h"
+#include <QBrush>
 
-HealthBar::HealthBar(QWidget *parent) : QWidget(parent), currentHealth(100) {}
-
-void HealthBar::setHealth(int health) {
-    currentHealth = health;
-    update(); // Trigger repaint
+HealthBar::HealthBar(qreal maxWidth, qreal height, QGraphicsItem *parent)
+    : QGraphicsRectItem(parent), maxWidth(maxWidth)
+{
+    setRect(0, 0, maxWidth, height);
+    setBrush(QBrush(Qt::green)); // Initial color of the health bar
 }
 
-void HealthBar::paintEvent(QPaintEvent *event) {
-    QPainter painter(this);
+void HealthBar::setPercentage(qreal percentage)
+{
+    qreal newWidth = maxWidth * percentage;
+    setRect(0, 0, newWidth, rect().height());
 
-    // Draw background
-    painter.fillRect(rect(), Qt::black);
-
-    // Calculate the width of the health bar based on current health
-    int barWidth = static_cast<int>(width() * (currentHealth / 100.0));
-
-    // Draw health bar
-    painter.fillRect(0, 0, barWidth, height(), Qt::green);
-}*/
+    // Change color based on health level (optional)
+    if (percentage <= 0.25) {
+        setBrush(QBrush(Qt::red)); // Low health, red color
+    } else if (percentage <= 0.5) {
+        setBrush(QBrush(Qt::yellow)); // Moderate health, yellow color
+    } else {
+        setBrush(QBrush(Qt::green)); // High health, green color
+    }
+}

@@ -12,8 +12,9 @@ class Fence;
 class Enemy : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
-    Enemy();
+    Enemy(QString enemyPath, int damage, int health);
     int damage;
+    QMovie *enemyAnimation;
     Fence* targetedFence;
     int health;
     static QPoint targetPoint; // Target point for enemy movement
@@ -26,6 +27,7 @@ public slots:
     void doDamage(Fence* fence);
     void onFenceDestroyed();
     void checkCollision();
+    void updatePixmap();
 
 private:
     QTimer *checkCollisionTimer;

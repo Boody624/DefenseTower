@@ -1,15 +1,18 @@
 #include "enemySpawner.h"
 
-EnemySpawner::EnemySpawner(QGraphicsScene* thescene, QVector<QVector<QChar>> Boarddata) : QObject(), QGraphicsPixmapItem(), thescene(thescene) {
+EnemySpawner::EnemySpawner(QGraphicsScene* thescene, QVector<QVector<QChar>> Boarddata,
+                           QString enemyPath, int enemyHealth,
+                           int enemyDamage) : QObject(), QGraphicsPixmapItem(), thescene(thescene) {
     thescene->addItem(this);
 
     // setting the image
-    QString path = ":/imgs/mtland.png";
-    QPixmap img3 = (path);
-    setPixmap(img3.scaled(50, 50));
+    this->enemyPath = enemyPath;
+    this->enemyDamage = enemyDamage;
+    this->enemyHealth = enemyHealth;
     Boarddata2 = Boarddata;
     QObject::connect(&timer, &QTimer::timeout, this, &EnemySpawner::spawnEnemy);
-    //timer.start(2000); // Adjust the interval as needed for enemy spawn rate
+    timer.start(2000); // Adjust the interval as needed for enemy spawn rate
+
 }
 
 EnemySpawner::~EnemySpawner() {
@@ -19,7 +22,7 @@ EnemySpawner::~EnemySpawner() {
 
 void EnemySpawner::spawnEnemy() {
     // Create an Enemy object
-    Enemy *enemy = new Enemy();
+    Enemy *enemy = new Enemy(enemyPath, enemyHealth, enemyDamage);
     //seed the rand with time
     srand(time(0));
     // Set a randomized position for the enemy
@@ -35,6 +38,7 @@ void EnemySpawner::spawnEnemy() {
         col = rand() % static_cast<int>(sceneHeight - 50);
     } while (Boarddata2[col / 50][row / 50] != '0');
     enemy->setPos(row, col);
+
 
     // Add enemy to the scene
     thescene->addItem(enemy);

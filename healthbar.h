@@ -1,22 +1,17 @@
-/*#ifndef HEALTHBAR_H
+#ifndef HEALTHBAR_H
 #define HEALTHBAR_H
 
-#include <QWidget>
-#include <QPainter>
+#include <QGraphicsRectItem>
 
-class HealthBar : public QWidget {
+class HealthBar : public QGraphicsRectItem
+{
 public:
-    explicit HealthBar(QWidget *parent = nullptr);
+    HealthBar(qreal maxWidth, qreal height, QGraphicsItem *parent = nullptr);
 
-    // Set current health and update the health bar
-    void setHealth(int health);
-
-protected:
-    void paintEvent(QPaintEvent *event) override;
+    void setPercentage(qreal percentage);
 
 private:
-    int currentHealth;
+    qreal maxWidth;
 };
 
 #endif // HEALTHBAR_H
-*/

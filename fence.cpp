@@ -1,7 +1,8 @@
 #include "fence.h"
 
-Fence::Fence(QGraphicsItem* parent, int health) : QObject(), QGraphicsPixmapItem(parent), health(health), maxhealth(health) {
-    QString path = ":/imgs/fence.png";
+Fence::Fence(QGraphicsItem* parent, QString fencePath ,int health) : QObject(), QGraphicsPixmapItem(parent), health(health), maxhealth(health) {
+    QString path = fencePath;
+
     QPixmap img3(path);
     setPixmap(img3.scaled(50, 50));
 

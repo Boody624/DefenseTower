@@ -12,18 +12,22 @@
 class EnemySpawner : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
-    EnemySpawner(QGraphicsScene* thescene, QVector<QVector<QChar>> Boarddata);
+    EnemySpawner(QGraphicsScene* thescene, QVector<QVector<QChar>> Boarddata, QString enemyPath, int enemyHealth, int enemyDamage);
     ~EnemySpawner();
     QVector<Fence*> fences;
     QVector<QVector<QChar>> Boarddata2;
     double row;
     double col;
+    QString enemyPath;
+    int enemyHealth;
+    int enemyDamage;
+    QTimer timer;
+
 public slots:
     void spawnEnemy();
 
 private:
     QGraphicsScene* thescene;
-    QTimer timer;
 };
 
 #endif // ENEMYSPAWNER_H

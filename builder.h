@@ -8,16 +8,17 @@
 class Builder: public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
-    Builder(QPointF origin, QVector<Fence*> fences);
+    Builder(QPointF origin, QString builderPath, int heal);
     void move();
     QPointF origin;
-    QVector<Fence*> fences;
+    QString builderPath;
+    static QVector<Fence*> fences;
     int heal;
     QPointF targetPoint; // Target point for movement
     void checkDamagedFence();
-    void dealWithCollision();
-    void handleFenceCollision(Fence* fence);
-    void handleEnemyCollision();
+    void moveToOrigin();
+    QTimer *originTimer;
+
 private:
     QTimer *moveTimer; // Timer for movement
     QTimer *checkFence;
