@@ -50,6 +50,12 @@ void game::displayLVL2(){
             builderHeal, bulletDamage, speed, defenseTowerPath,
             bulletPath, soundPath);
 
+    enemyHealth += 5;
+    enemyDamage += 5;
+    fenceHealth -= 5;
+    builderHeal -= 1;
+    bulletDamage -= 1;
+
 
     int castleHealth = 100;
 
@@ -84,6 +90,11 @@ void game::displayLVL3(){
             builderHeal, bulletDamage, speed, defenseTowerPath,
             bulletPath, soundPath);
 
+    enemyHealth += 10;
+    enemyDamage += 10;
+    fenceHealth -= 5;
+    builderHeal -= 1;
+    bulletDamage -= 1;
 
     int castleHealth = 100;
     QString designFilePath = ":/design/LVL3.txt";
@@ -114,7 +125,11 @@ void game::displayLVL4(){
     setGame( enemyHealth, enemyDamage, fenceHealth,
             builderHeal, bulletDamage, speed, defenseTowerPath,
             bulletPath, soundPath);
-
+    enemyHealth += 10;
+    enemyDamage += 10;
+    fenceHealth -= 5;
+    builderHeal -= 2;
+    bulletDamage -= 2;
 
     int castleHealth = 100;
     QString designFilePath = ":/design/LVL4.txt";
@@ -145,6 +160,11 @@ void game::displayLVL5(){
     setGame( enemyHealth, enemyDamage, fenceHealth,
             builderHeal, bulletDamage, speed, defenseTowerPath,
             bulletPath, soundPath);
+    enemyHealth += 10;
+    enemyDamage += 10;
+    fenceHealth -= 8;
+    builderHeal -= 3;
+    bulletDamage -= 3;
     int castleHealth = 100;
 
     QString designFilePath = ":/design/LVL5.txt";
@@ -177,7 +197,11 @@ void game::displayFinal(){
             builderHeal, bulletDamage, speed, defenseTowerPath,
             bulletPath, soundPath);
     int castleHealth = 100;
-
+    enemyHealth += 12;
+    enemyDamage += 12;
+    fenceHealth -= 6;
+    builderHeal -= 2;
+    bulletDamage -= 2;
     QString designFilePath = ":/design/LVLFinal.txt";
     QString castlePath = ":imgs/castle.png";
     QString bgPath = ":/imgs/stone.png";
@@ -415,7 +439,6 @@ void game::onDisplayFinal() {
         }
     });
 
-    // Use a lambda function to delay the creation of the StoryDialog
         QStringList speech = {"Thank you so much! You have killed the devilish spirit!",
                               "You pitiful fool. You dare to think that you've bested me? "
                               "That feeble attempt barely even scratched the surface of my true power. "
