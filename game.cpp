@@ -27,9 +27,9 @@ void game::displayLVL1(){
     QString builderHutPath = ":imgs/builderHut.png";
     QString builderPath = ":imgs/builder.png";
     QTime initialTime(0, 5, 0);
-    QString enemyPath = ":/imgs/moveEnemy1.gif";
-    QString enemyAttack = ":/imgs/attackEnemy1.gif";
-    QString enemyStill = ":/imgs/stillEnemy1.gif";
+    QString enemyPath = ":/imgs/moveEnemy4.gif";
+    QString enemyAttack = ":/imgs/attackEnemy4.gif";
+    QString enemyStill = ":/imgs/stillEnemy4.gif";
 
     this->scenes = new Scenes(designFilePath, castlePath, castleHealth, defenseTowerPath,
                                 bulletPath, bulletDamage, enemyPath,
@@ -59,16 +59,17 @@ void game::displayLVL2(){
     QString fencePath = ":/imgs/sandFence.png";
     QString builderHutPath = ":imgs/builderHut.png";
     QString builderPath = ":imgs/builder.png";
-    QTime initialTime(0, 4, 12);
-    QString enemyPath = ":/imgs/moveEnemy2.gif";
-    QString enemyAttack = ":/imgs/attackEnemy2.gif";
-    QString enemyStill = ":/imgs/stillEnemy2.gif";
+    QTime initialTime(0, 4, 45);
+    QString enemyPath = ":/imgs/moveEnemy4.gif";
+    QString enemyAttack = ":/imgs/attackEnemy4.gif";
+    QString enemyStill = ":/imgs/stillEnemy4.gif";
 
     this->scenes = new Scenes(designFilePath, castlePath, castleHealth, defenseTowerPath,
                               bulletPath, bulletDamage, enemyPath,
                               enemyHealth, enemyDamage, bgPath, fencePath, fenceHealth,
                               builderHutPath, builderPath, builderHeal, initialTime, enemyAttack,
                               enemyStill, soundPath, speed);
+
     QObject::connect(scenes->scene, &myscene::displayLVL3, this, &game::onDisplayLVL3);
     this->view = scenes->renderScene();
     connect(scenes->castle, &Castle::gameOver, this, &game::onGameOver);
@@ -85,17 +86,16 @@ void game::displayLVL3(){
 
 
     int castleHealth = 100;
-
     QString designFilePath = ":/design/LVL3.txt";
     QString castlePath = ":imgs/castle.png";
-    QString bgPath = ":/imgs/coneFence.png";
-    QString fencePath = ":/imgs/pavement.png";
+    QString bgPath = ":/imgs/pavement.png";
+    QString fencePath = ":/imgs/coneFence.png";
     QString builderHutPath = ":imgs/builderHut.png";
     QString builderPath = ":imgs/builder.png";
-    QTime initialTime(0, 3, 24);
-    QString enemyPath = ":/imgs/moveEnemy3.gif";
-    QString enemyAttack = ":/imgs/attackEnemy3.gif";
-    QString enemyStill = ":/imgs/stillEnemy3.gif";
+    QTime initialTime(0, 4, 30);
+    QString enemyPath = ":/imgs/moveEnemy4.gif";
+    QString enemyAttack = ":/imgs/attackEnemy4.gif";
+    QString enemyStill = ":/imgs/stillEnemy4.gif";
 
     this->scenes = new Scenes(designFilePath, castlePath, castleHealth, defenseTowerPath,
                               bulletPath, bulletDamage, enemyPath,
@@ -123,10 +123,10 @@ void game::displayLVL4(){
     QString fencePath = ":/imgs/iceFence.png";
     QString builderHutPath = ":imgs/builderHut.png";
     QString builderPath = ":imgs/builder.png";
-    QTime initialTime(0, 2, 36);
-    QString enemyPath = ":/imgs/moveEnemy6.gif";
-    QString enemyAttack = ":/imgs/attackEnemy6.gif";
-    QString enemyStill = ":/imgs/stillEnemy6.gif";
+    QTime initialTime(0, 4, 15);
+    QString enemyPath = ":/imgs/moveEnemy4.gif";
+    QString enemyAttack = ":/imgs/attackEnemy4.gif";
+    QString enemyStill = ":/imgs/stillEnemy4.gif";
 
     this->scenes = new Scenes(designFilePath, castlePath, castleHealth, defenseTowerPath,
                               bulletPath, bulletDamage, enemyPath,
@@ -153,10 +153,10 @@ void game::displayLVL5(){
     QString fencePath = ":/imgs/barrelFence.png";
     QString builderHutPath = ":imgs/builderHut.png";
     QString builderPath = ":imgs/builder.png";
-    QTime initialTime(0, 1, 48);
-    QString enemyPath = ":/imgs/moveEnemy5.gif";
-    QString enemyAttack = ":/imgs/attackEnemy5.gif";
-    QString enemyStill = ":/imgs/stillEnemy5.gif";
+    QTime initialTime(0, 4, 0);
+    QString enemyPath = ":/imgs/moveEnemy4.gif";
+    QString enemyAttack = ":/imgs/attackEnemy4.gif";
+    QString enemyStill = ":/imgs/stillEnemy4.gif";
 
     this->scenes = new Scenes(designFilePath, castlePath, castleHealth, defenseTowerPath,
                               bulletPath, bulletDamage, enemyPath,
@@ -200,12 +200,20 @@ void game::displayFinal(){
     connect(scenes->castle, &Castle::gameOver, this, &game::onGameOver);
     connect(scenes->castle, &Castle::gameWon, this, &game::onGameWon);
     qDebug() << "Boss magic target: " << bossMagic::target;
-    // FinalBoss *finalBoss = new FinalBoss(nullptr, scenes->scene);
-    // scenes->scene->addItem(finalBoss);
+    FinalBoss *finalBoss = new FinalBoss(nullptr, scenes->scene);
+    scenes->scene->addItem(finalBoss);
     this->view->showFullScreen();
 }
 
 void game::onDisplayLVL1() {
+    // if (this->view) {
+    //     this->view->close();
+    // }
+    // QTimer::singleShot(2000, [=]() {
+    //     if (this->scenes->scene) {
+    //         delete this->scenes->scene;
+    //     }
+    // });
 
     WeaponSelectDialog weaponDialog;
     weaponDialog.show();
@@ -221,37 +229,19 @@ void game::onDisplayLVL2() {
     if (this->view) {
         this->view->close();
     }
-
-
-        // Create a copy of the items list to avoid modifying it while iterating
-        QList<QGraphicsItem*> itemsCopy = this->scenes->scene->items();
-        for (QGraphicsItem *item : itemsCopy)
-        {
-            // Check if the item is a QGraphicsPixmapItem
-            QTimer::singleShot(2000, [=]() {
-                if (dynamic_cast<QGraphicsPixmapItem*>(item) != nullptr) {
-                // Schedule the item for deletion after 1000 milliseconds
-                    qDebug() << "Removing item";
-                    this->scenes->scene->removeItem(item);
-                    // Delete the item after it's removed from the scene
-                    qDebug() << "Deleting item";
-                    delete item;
-                }
-                });
+    QList<QGraphicsItem*> items = this->scenes->scene->items();
+    for (QGraphicsItem *item : items) {
+        if (dynamic_cast<QGraphicsPixmapItem*>(item) != nullptr) {
+            this->scenes->scene->removeItem(item);
+            delete item;
 
         }
-
-
-
-
-
-
-        // Schedule the scene for deletion after 2000 milliseconds
-        // QTimer::singleShot(3000,[=]() {
-        //     // Delete the scene after it's no longer being used
-        //     //this->scenes = nullptr;
-        // });
-
+    }
+    QTimer::singleShot(2000, [=]() {
+        if (this->scenes) {
+            delete this->scenes;
+        }
+    });
 
 
     QString windowTitle = "Congratulations!";
@@ -272,6 +262,7 @@ void game::onDisplayLVL2() {
         int result = weaponDialog.exec();
         if (result == QDialog::Accepted) {
             displayLVL2();
+
         }
     } else {
         exit(0);
@@ -280,28 +271,22 @@ void game::onDisplayLVL2() {
 
 
 void game::onDisplayLVL3() {
-    // Call your displayLVL3 function
     if (this->view) {
         this->view->close();
     }
     QList<QGraphicsItem*> items = this->scenes->scene->items();
     for (QGraphicsItem *item : items) {
-        // Check if the item is a QGraphicsPixmapItem
         if (dynamic_cast<QGraphicsPixmapItem*>(item) != nullptr) {
-            // Remove the item from the scene
             this->scenes->scene->removeItem(item);
-            // Delete the item to free memory
-            QTimer::singleShot(2000, [=]() {
-                delete item;
-            });
+            delete item;
+
         }
     }
-    if (this->scenes) {
-        QTimer::singleShot(2000, [=]() {
+    QTimer::singleShot(2000, [=]() {
+        if (this->scenes) {
             delete this->scenes;
-        });
-    }
-
+        }
+    });
 
     QString windowTitle = "Congratulations!";
     QString audioPath = "qrc:/sounds/themeMusic.mp3";
@@ -334,23 +319,17 @@ void game::onDisplayLVL4() {
     }
     QList<QGraphicsItem*> items = this->scenes->scene->items();
     for (QGraphicsItem *item : items) {
-        // Check if the item is a QGraphicsPixmapItem
         if (dynamic_cast<QGraphicsPixmapItem*>(item) != nullptr) {
-            // Remove the item from the scene
             this->scenes->scene->removeItem(item);
-            // Delete the item to free memory
-            QTimer::singleShot(2000, [=]() {
-                delete item;
-            });
+            delete item;
+
         }
     }
-    if (this->scenes) {
-        QTimer::singleShot(2000, [=]() {
+    QTimer::singleShot(2000, [=]() {
+        if (this->scenes) {
             delete this->scenes;
-        });
-    }
-
-
+        }
+    });
     QString windowTitle = "Congratulations!";
     QString audioPath = "qrc:/sounds/themeMusic.mp3";
     qreal playBackRate = 0.8;
@@ -381,21 +360,17 @@ void game::onDisplayLVL5() {
     }
     QList<QGraphicsItem*> items = this->scenes->scene->items();
     for (QGraphicsItem *item : items) {
-        // Check if the item is a QGraphicsPixmapItem
         if (dynamic_cast<QGraphicsPixmapItem*>(item) != nullptr) {
-            // Remove the item from the scene
             this->scenes->scene->removeItem(item);
-            // Delete the item to free memory
-            QTimer::singleShot(2000, [=]() {
-                delete item;
-            });
+            delete item;
+
         }
     }
-    if (this->scenes) {
-        QTimer::singleShot(2000, [=]() {
+    QTimer::singleShot(2000, [=]() {
+        if (this->scenes) {
             delete this->scenes;
-        });
-    }
+        }
+    });
 
     QString windowTitle = "Congratulations!";
     QString audioPath = "qrc:/sounds/themeMusic.mp3";
@@ -428,21 +403,17 @@ void game::onDisplayFinal() {
     }
     QList<QGraphicsItem*> items = this->scenes->scene->items();
     for (QGraphicsItem *item : items) {
-        // Check if the item is a QGraphicsPixmapItem
         if (dynamic_cast<QGraphicsPixmapItem*>(item) != nullptr) {
-            // Remove the item from the scene
             this->scenes->scene->removeItem(item);
-            // Delete the item to free memory
-            QTimer::singleShot(2000, [=]() {
-                delete item;
-            });
+            delete item;
+
         }
     }
-    if (this->scenes) {
-        QTimer::singleShot(2000, [=]() {
+    QTimer::singleShot(2000, [=]() {
+        if (this->scenes) {
             delete this->scenes;
-        });
-    }
+        }
+    });
 
     // Use a lambda function to delay the creation of the StoryDialog
         QStringList speech = {"Thank you so much! You have killed the devilish spirit!",

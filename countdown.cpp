@@ -38,19 +38,19 @@ void CountdownTimer::updateTime() {
         emit Won();
         return;
     }
-    else if (time.minute() == 4 && time.second() == 12) {
+    else if (time.minute() == 4 && time.second() == 45) {
         emit displayLVL2();
     }
-    else if (time.minute() == 3 && time.second() == 24) {
+    else if (time.minute() == 4 && time.second() == 30) {
         emit displayLVL3();
     }
-    else if (time.minute() == 2 && time.second() == 36) {
+    else if (time.minute() == 4 && time.second() == 15) {
         emit displayLVL4();
     }
-    else if (time.minute() == 1 && time.second() == 48) {
+    else if (time.minute() == 4 && time.second() == 00) {
         emit displayLVL5();
     }
-    else if (time.minute() == 1 && time.second() == 00) {
+    else if (time.minute() == 3 && time.second() == 40) {
         emit displayFinal();
     }
     setPlainText(QString("%1").arg(time.toString("mm:ss")));
