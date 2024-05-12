@@ -58,5 +58,6 @@ void FinalBoss::fire()
     qDebug() << "Firing magic";
     bossMagic *magic = new bossMagic(this->pos());
     scene->addItem(magic);
+    emit magic->fired();
 
 }

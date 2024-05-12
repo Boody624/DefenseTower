@@ -31,6 +31,7 @@ signals:
     void displayLVL4();
     void displayLVL5();
     void displayFinal();
+    void Won();
 };
 
 #endif // COUNTDOWN_H
