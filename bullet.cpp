@@ -2,21 +2,38 @@
 #include "bullet.h"
 #include "enemy.h"
 #include "damageboosters.h"
+#include "scenes.h"
+
 int bullet::counter = 0;
 int bullet::damageCounter = 0;
 int bullet::damage = 10;
 bool bullet::boosted = false;
-bullet::bullet(QPointF position, QString bulletPath, int bulletDamage) : QObject(), QGraphicsPixmapItem()
+bullet::bullet(QPointF position, QString bulletPath, int bulletDamage, QString soundPath, float speed) : QObject(), QGraphicsPixmapItem()
 {
     initialx = this->x();
     initialy = this->y();
+    this->speed = speed;
     // setting the image of the bullet
     QString path = bulletPath;
     QPixmap img3 = (path);
     setPixmap(img3.scaled(50, 50));
     setPos(position.x(),position.y());
     line.setLine(this->x(), this->y(), getMousePosition().x(), getMousePosition().y());
+    destination = QPointF(getMousePosition().x(), getMousePosition().y());
     distance = qSqrt(qPow(line.dx(), 2) + qPow(line.dy(), 2));
+    this->soundPath = soundPath;
+    audio = new QAudioOutput();
+    audio->setVolume(1);
+    player = new QMediaPlayer();
+    player->setAudioOutput(audio);
+    player->setSource(QUrl(soundPath));
+    player->play();
+    // qreal angle = QLineF(pos(), destination).angle();
+
+    // // Set the rotation angle of the bullet
+    // setRotation(angle);
+
+
 }
 
 QPoint bullet::getMousePosition() {
@@ -24,6 +41,7 @@ QPoint bullet::getMousePosition() {
 }
 void bullet::move()
 {
+
     QList<QGraphicsItem*> colliding_items = collidingItems();
 
     for (int i = 0; i < colliding_items.size(); i++) {
@@ -36,6 +54,7 @@ void bullet::move()
                 qDebug() << "Enemy killed with damage" << bullet::damage <<Qt::endl;
                 counter++;
                 incDamage();
+                emit enemyDead();
                 delete enemy;
             }
 
@@ -48,6 +67,7 @@ void bullet::move()
             damageBoosters* booster = dynamic_cast<damageBoosters*>(colliding_items[i]);
 
             // Remove both items from the scene
+            if(booster->path == ":/imgs/damageBooster.png"){
             scene()->removeItem(booster);
 
             boostDamage();
@@ -56,7 +76,33 @@ void bullet::move()
             scene()->removeItem(this);
             deleteLater();
 
+            }
+            else if(booster->path == ":/imgs/healthBooster.png"){
+                scene()->removeItem(booster);
+                emit boostHealth();
+                qDebug() << "Health Boosted" << Qt::endl;
+                delete booster;
+                // Delete both items
+                scene()->removeItem(this);
+                deleteLater();
+
+            }
+
+            else if(booster->path == ":/imgs/multiShot.png"){
+                scene()->removeItem(booster);
+                Defence_unit::multi = true;
+                qDebug() << "Multi Shot Enabled" << Qt::endl;
+                QTimer::singleShot(10000, [=]() {
+                    Defence_unit::multi = false;
+                });
+                delete booster;
+                // Delete both items
+                scene()->removeItem(this);
+                deleteLater();
+
+            }
             return; // Exit the loop or function
+
         }
 
     }

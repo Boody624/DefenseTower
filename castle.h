@@ -15,11 +15,15 @@ public:
     bool isDestroyed();
     bool decHealth(int damage);
     bool incHealth(int health);
+    bool played = false;
     QString castlePath;
+    void onWon();
+    void fillHealth();
 
 signals:
-    void gotHit();
-
+    void gameOver();
+    void castleHit(int health);
+    void gameWon();
 private:
     int health;
     int maxHealth;

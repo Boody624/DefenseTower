@@ -12,6 +12,8 @@
 #include <QMouseEvent>
 #include <QSet>
 #include <QTime>
+#include <QLabel>
+#include <QGraphicsProxyWidget>
 #include "castle.h"
 #include "defence_unit.h"
 #include "fence.h"
@@ -23,10 +25,12 @@ public:
            QString defenseTowerPath, QString bulletPath, int bulletDamage,
            QString enemyPath, int enemyHealth, int enemyDamage, QString bgPath,
            QString fencePath, int fenceHealth, QString builderHutPath,
-           QString builderPath, int builderHeal, QTime initialTime);
+           QString builderPath, int builderHeal, QTime initialTime, QString enemyAttack,
+           QString enemyStill, QString soundPath, float speed);
     QGraphicsView* getView();
     QGraphicsView* view;
     myscene* scene;
+    QVector<QVector<int>> graph;
     Fence* fence;
     QVector<QVector<QChar>> Boarddata;
     Castle* castle;
@@ -41,8 +45,12 @@ public:
     int castleHealth;
     QString defenseTowerPath;
     QString bulletPath;
+    QString soundPath;
+    float speed;
     int bulletDamage;
     QString enemyPath;
+    QString enemyAttack;
+    QString enemyStill;
     int enemyHealth;
     int enemyDamage;
     QString bgPath;
@@ -54,7 +62,12 @@ public:
     QTime initialTime;
     void deleteAllObjects();
     QPointF castlePosition;
+    void gameOver();
+    void changeScore();
 
+
+
+    //QVector<QGraphicsItems* > obstacles;
 
 };
 

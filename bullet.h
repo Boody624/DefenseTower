@@ -10,6 +10,9 @@
 #include <QPointF>
 #include <QGraphicsScene>
 #include <qmath.h>
+#include <QLabel>
+#include <QAudioOutput>
+#include <QMediaPlayer>
 
 class bullet : public QObject, public QGraphicsPixmapItem
 {
@@ -17,13 +20,14 @@ class bullet : public QObject, public QGraphicsPixmapItem
 private:
 
 public:
-    bullet(QPointF origin, QString bulletPath, int bulletDamage);
+    bullet(QPointF origin, QString bulletPath, int bulletDamage, QString soundPath, float speed);
     static int counter;
     float xposition;
     float yposition;
     float initialx;
     float initialy;
-    float speed = 20;
+    QPointF destination;
+    float speed;
     static int damage;
     static int damageCounter;
     QPoint getMousePosition();
@@ -33,10 +37,18 @@ public:
     void setDestination(QPointF destination);
     float slope;
     static bool boosted;
+    QString soundPath;
+    QAudioOutput *audio;
+    QMediaPlayer *player;
+
 public slots:
     void move();
     void incDamage();
     static void boostDamage();
+signals:
+    void enemyDead();
+    void boostHealth();
+
 };
 
-#endif // BULLET_H
+#endif

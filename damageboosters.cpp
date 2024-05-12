@@ -1,10 +1,10 @@
 #include "damageBoosters.h"
 #include <QPainter>
 
-damageBoosters::damageBoosters(QObject *parent) : QObject(parent)
+damageBoosters::damageBoosters(QObject *parent, QString path) : QObject(parent)
 {
-    QString imgPath = ":/imgs/damageBooster.png";
-    QPixmap img(imgPath);
+    this->path = path;
+    QPixmap img(path);
     setPixmap(img.scaled(50, 50));
     setZValue(2);
     setPos(50, 50);

@@ -9,7 +9,9 @@ builder_hut::builder_hut(QGraphicsScene* thescene, QVector<Fence*> fences, QStri
     QString path = builderHutPath;
     QPixmap img3 = (path);
     this->fences = fences;
-    setPixmap(img3.scaled(50, 50));
+    setPixmap(img3.scaled(100, 100));
+    setScale(0.7);
+    setZValue(2.1);
 }
 
 builder_hut::~builder_hut() {
@@ -22,6 +24,7 @@ void builder_hut::spawnBuilder() {
     Builder *builder = new Builder(origin, builderPath, builderHeal);
     //make the builder's position the same as the builder hut
     builder->setPos(this->x(), this->y());
+    Builder::builders.push_back(builder);
     thescene->addItem(builder);
 }
 

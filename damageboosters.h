@@ -10,8 +10,8 @@ class damageBoosters : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    damageBoosters(QObject *parent = nullptr);
-
+    damageBoosters(QObject *parent = nullptr, QString path = "");
+    QString path;
 };
 
 #endif // DAMAGEBOOSTERS_H

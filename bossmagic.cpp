@@ -2,11 +2,19 @@
 #include "fence.h"
 #include "castle.h"
 
-int bossMagic::damage = 50;
+int bossMagic::damage;
 QPointF bossMagic::target;
 
 bossMagic::bossMagic(QPointF position): QObject(), QGraphicsPixmapItem()
 {
+    audio = new QAudioOutput();
+    player = new QMediaPlayer();
+    audio->setVolume(1);
+
+    player->setAudioOutput(audio);
+    player->setSource(QUrl("qrc:/sounds/bossMagic.mp3"));
+    player->setPlaybackRate(1);
+    player->play();
     initialx = this->x();
     initialy = this->y();
     // setting the image of the bullet
@@ -44,6 +52,7 @@ void bossMagic::move()
             Castle* castle = dynamic_cast<Castle*>(colliding_items[i]);
 
             // Remove both items from the scene
+            castle->decHealth(1);
             qDebug() << "Castle hit" << Qt::endl;
             scene()->removeItem(this);
             deleteLater();

@@ -29,4 +29,4 @@ private:
     QTimer timer;
 };
 
-#endif // BUILDER_HUT_H
+#endif

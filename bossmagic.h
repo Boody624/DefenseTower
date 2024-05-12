@@ -1,3 +1,4 @@
+
 #ifndef BOSSMAGIC_H
 #define BOSSMAGIC_H
 #include <QCursor>
@@ -10,7 +11,9 @@
 #include <QPointF>
 #include <QGraphicsScene>
 #include <qmath.h>
-
+#include <QAudioOutput>
+#include <QMediaPlayer>
+#include <QMovie>
 class bossMagic: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -25,12 +28,18 @@ public:
     QLine line;
     float distance;
     QTimer *timer;
-    float speed = 30;
+    float speed = 10;
     void setDestination(QPointF destination);
     float slope;
     static QPointF target;
+    QMovie *moveAnimation;
+    void updatePixmap();
+    QAudioOutput *audio;
+    QMediaPlayer *player;
 public slots:
     void move();
+signals:
+    void fired();
 };
 
-#endif // BOSSMAGIC_H
+#endif

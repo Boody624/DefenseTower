@@ -28,10 +28,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     myscene.cpp \
-    scenes.cpp
+    optionsdialog.cpp \
+    scenes.cpp \
+    storydialogue.cpp \
+    str.cpp
 
 HEADERS += \
-    Options.h \
     bossmagic.h \
     builder.h \
     builder_hut.h \
@@ -50,7 +52,10 @@ HEADERS += \
     healthbar.h \
     mainwindow.h \
     myscene.h \
-    scenes.h
+    optionsdialog.h \
+    scenes.h \
+    storydialogue.h \
+    str.h
 
 FORMS += \
     entry.ui \

@@ -12,9 +12,52 @@
         <file>damageBooster.png</file>
         <file>final_boss.png</file>
         <file>bossMagic.png</file>
-        <file>enemy.gif</file>
-        <file>giphy.gif</file>
-        <file>gomel_walk011.gif</file>
+        <file>boss_Magic-ezgif.com-gif-maker.gif</file>
+        <file>first.jpg</file>
+        <file>1.jpg</file>
+        <file>2.jpg</file>
+        <file>3.jpg</file>
+        <file>heartIcon.jpg</file>
+        <file>heartIcon.png</file>
+        <file>score.png</file>
+        <file>brokenFence.png</file>
+        <file>archerTower.png</file>
+        <file>bossBullet.gif</file>
+        <file>bullet.gif</file>
+        <file>cannonBullet.gif</file>
+        <file>canon.png</file>
+        <file>wizardBullet.gif</file>
+        <file>arrow.png</file>
+        <file>attackEnemy2.gif</file>
+        <file>attackEnemy4.gif</file>
+        <file>moveEnemy2.gif</file>
+        <file>moveEnemy3.gif</file>
+        <file>moveEnemy4.gif</file>
+        <file>stillEnemy4.gif</file>
+        <file>attackEnemy5.gif</file>
+        <file>moveEnemy5.gif</file>
+        <file>stillEnemy5.gif</file>
+        <file>healthBooster.png</file>
+        <file>multiShot.png</file>
+        <file>attackEnemy1.gif</file>
+        <file>attackEnemy3.gif</file>
+        <file>attackEnemy6.gif</file>
+        <file>moveEnemy1.gif</file>
+        <file>moveEnemy6.gif</file>
+        <file>stillEnemy1.gif</file>
+        <file>stillEnemy2.gif</file>
+        <file>stillEnemy3.gif</file>
+        <file>stillEnemy6.gif</file>
+        <file>sand.png</file>
+        <file>wood.png</file>
+        <file>barrelFence.png</file>
+        <file>coneFence.png</file>
+        <file>iceFence.png</file>
+        <file>pavement.png</file>
+        <file>sandFence.png</file>
+        <file>snow.png</file>
+        <file>stone.png</file>
+        <file>stoneFence.png</file>
     </qresource>
     <qresource prefix="/design">
         <file>LVL2.txt</file>
@@ -25,7 +68,32 @@
         <file>LVL1.txt</file>
     </qresource>
     <qresource prefix="/sounds">
+        <file>1.wav</file>
+        <file>2.wav</file>
+        <file>3.wav</file>
+        <file>4.wav</file>
+        <file>5.wav</file>
+        <file>6.wav</file>
+        <file>7.wav</file>
+        <file>8.wav</file>
+        <file>9.wav</file>
+        <file>15.wav</file>
+        <file>16.wav</file>
+        <file>arrow.mp3</file>
         <file>bgsound.wav</file>
+        <file>cannon.wav</file>
+        <file>evilLaugh.mp3</file>
+        <file>gameBonus.mp3</file>
+        <file>gameOver.mp3</file>
+        <file>I ve watched you for.mp3</file>
+        <file>laser.mp3</file>
+        <file>monsterLaugh.mp3</file>
+        <file>themeMusic.mp3</file>
+        <file>We-Must-Keep-Going.wav</file>
+        <file>fenceHit.mp3</file>
+        <file>magic.wav</file>
+        <file>bossMagic.mp3</file>
+        <file>fenceHit.wav</file>
     </qresource>
     <qresource prefix="/stream">
         <file>users.txt</file>

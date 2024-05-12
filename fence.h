@@ -10,6 +10,8 @@
 #include <QPaintEvent>
 #include <QGraphicsScene>
 #include <QWidget>
+#include <QAudioOutput>
+#include <QMediaPlayer>
 #include "healthBar.h"
 #include "enemy.h"
 
@@ -36,11 +38,13 @@ public:
     void setLocation(const QPoint& location);
     // Other methods
     void damage(int amount);
-    void displayHealthBar();
-
-
+    //void displayHealthBar();
+    int x;
+    int y;
+    QAudioOutput *audio;
+    QMediaPlayer *player;
 public slots:
-    void takeDmg(int damage);
+    //void takeDmg(int damage);
     void checkIfDestroyed();
     bool isDestroyed();
 

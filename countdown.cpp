@@ -1,5 +1,5 @@
 #include "countdown.h"
-
+#include "storydialogue.h"
 CountdownTimer::CountdownTimer(QGraphicsItem *parent, QTime initial) : QGraphicsTextItem(parent) {
     setTime(initial.minute(), initial.second()); // Set initial time to 5 minutes
     QString timeString = time.toString("mm:ss");
@@ -34,22 +34,23 @@ void CountdownTimer::updateTime() {
     if (time.minute() == 0 && time.second() == 0) {
         timer.stop();
         setPlainText("00:00");
+
+        emit Won();
         return;
     }
-    else if (time.minute() == 1 && time.second() == 0) {
+    else if (time.minute() == 4 && time.second() == 12) {
         emit displayLVL2();
-        qDebug() << "Emitting displayLVL2 signal";
     }
-    else if (time.minute() == 0 && time.second() == 45) {
+    else if (time.minute() == 3 && time.second() == 24) {
         emit displayLVL3();
     }
-    else if (time.minute() == 0 && time.second() == 30) {
+    else if (time.minute() == 2 && time.second() == 36) {
         emit displayLVL4();
     }
-    else if (time.minute() == 0 && time.second() == 15) {
+    else if (time.minute() == 1 && time.second() == 48) {
         emit displayLVL5();
     }
-    else if (time.minute() == 0 && time.second() == 10) {
+    else if (time.minute() == 1 && time.second() == 00) {
         emit displayFinal();
     }
     setPlainText(QString("%1").arg(time.toString("mm:ss")));

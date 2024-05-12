@@ -18,6 +18,7 @@ void myscene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         QPointF point = event->scenePos();
+        qDebug() << "Mouse Pressed at: " << point;
         emit mousePresseddd(point);
     }
 }

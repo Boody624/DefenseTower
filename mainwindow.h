@@ -18,7 +18,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QMediaPlayer* bgsound = new QMediaPlayer();
-
+    float currentVolume;
+    void updateVolume(int volume);
+    void updateDifficulty(int difficulty);
+    QAudioOutput * bgoutput;
 
 private slots:
     void on_Exit_clicked();
