@@ -15,7 +15,7 @@ public:
     CountdownTimer(QGraphicsItem *parent, QTime initial);
 
     void start();
-
+    static int counter;
     void setTime(int minutes, int seconds);
 
 private:

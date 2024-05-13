@@ -1,5 +1,7 @@
 #include "countdown.h"
 #include "storydialogue.h"
+
+int CountdownTimer::counter = 0;
 CountdownTimer::CountdownTimer(QGraphicsItem *parent, QTime initial) : QGraphicsTextItem(parent) {
     setTime(initial.minute(), initial.second()); // Set initial time to 5 minutes
     QString timeString = time.toString("mm:ss");
@@ -31,27 +33,29 @@ void CountdownTimer::setTime(int minutes, int seconds) {
 
 void CountdownTimer::updateTime() {
     time = time.addSecs(-1); // Decrement time by 1 second
-    if (time.minute() == 0 && time.second() == 0) {
+    if (time.minute() == 0 && time.second() == 0 && CountdownTimer::counter == 1) {
         timer.stop();
         setPlainText("00:00");
+        CountdownTimer::counter = 0;
 
         emit Won();
         return;
     }
-    else if (time.minute() == 4 && time.second() == 45) {
+    else if (time.minute() == 1 && time.second() == 00) {
         emit displayLVL2();
     }
-    else if (time.minute() == 4 && time.second() == 30) {
+    else if (time.minute() == 0 && time.second() == 45) {
         emit displayLVL3();
     }
-    else if (time.minute() == 4 && time.second() == 15) {
+    else if (time.minute() == 0 && time.second() == 30) {
         emit displayLVL4();
     }
-    else if (time.minute() == 4 && time.second() == 00) {
+    else if (time.minute() == 0 && time.second() == 15) {
         emit displayLVL5();
     }
-    else if (time.minute() == 3 && time.second() == 40) {
+    else if (time.minute() == 0 && time.second() == 0 && CountdownTimer::counter == 0) {
         emit displayFinal();
+        CountdownTimer::counter++;
     }
     setPlainText(QString("%1").arg(time.toString("mm:ss")));
 }

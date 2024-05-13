@@ -35,12 +35,15 @@ void Defence_unit::spawnBullet()
     if (multi)
     {
         spawnBullet2();
-
-        QTimer::singleShot(500, [=]() {
+        QTimer::singleShot(300, [=]() {
+            if(scene()){
             spawnBullet2(); //
+        }
         });
-        QTimer::singleShot(1000, [=]() {
-            spawnBullet2(); //
+        QTimer::singleShot(600, [=]() {
+            if(scene()){
+                spawnBullet2(); //
+            }
         });
     }
     else{

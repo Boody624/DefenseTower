@@ -51,4 +51,4 @@ signals:
 
 };
 
-#endif
+#endif // BULLET_H
